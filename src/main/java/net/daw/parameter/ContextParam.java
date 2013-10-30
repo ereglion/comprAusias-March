@@ -45,12 +45,20 @@ public class ContextParam {
                 oContexto.setClase(request.getParameter("class"));
             }
 
-            if (request.getParameter("method") == null || (!oContexto.getHaySesion() && !"login".equals(request.getParameter("method")))) {
-                oContexto.setMetodo("ocioso");
-            } else {
+            if (request.getParameter("method") != null || (oContexto.getHaySesion() && "login".equals(request.getParameter("method")))) {
                 oContexto.setMetodo(request.getParameter("method"));
+            } else {
+                oContexto.setMetodo("ocioso");
             }
 
+            /*
+             if (request.getParameter("method") == null || (!oContexto.getHaySesion() && !"login".equals(request.getParameter("method")))) {
+             oContexto.setMetodo("ocioso");
+             } else {
+             oContexto.setMetodo(request.getParameter("method"));
+             }
+             */
+            
             if (request.getParameter("phase") == null) {
                 oContexto.setFase("1");
             } else {

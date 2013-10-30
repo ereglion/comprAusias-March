@@ -32,4 +32,23 @@ public class UsuarioDao {
             throw new Exception("ClienteDao.getPage: Error: " + e.getMessage());
         }
     }
+    
+    public void set(UsuarioBean oUsuarioBean) throws Exception {
+        try {
+            oMysql.conexion(enumTipoConexion);
+            oMysql.initTrans();
+            if (oUsuarioBean.getId() == 0) {
+                oUsuarioBean.setId(oMysql.insertOne("producto"));
+            }
+            oMysql.updateOne(oUsuarioBean.getId(), "usuario", "nombre", oUsuarioBean.getNombre());
+            oMysql.updateOne(oUsuarioBean.getId(), "usuario", "password", oUsuarioBean.getPassword());
+            oMysql.updateOne(oUsuarioBean.getId(), "usuario", "email", oUsuarioBean.getEmail());
+            oMysql.commitTrans();
+        } catch (Exception e) {
+            oMysql.rollbackTrans();
+            throw new Exception("ProductoDao.set: Error: " + e.getMessage());
+        } finally {
+            oMysql.desconexion();
+        }
+    }
 }
