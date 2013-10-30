@@ -53,7 +53,6 @@
                             } else {
                             %>
                             <a class="navbar-link" href="Controller?class=usuario&method=login">Login</a>
-                            <a class="navbar-link" href="Controller?class=usuario&method=login">Register</a>
                             <%
                                 }
                             %>
